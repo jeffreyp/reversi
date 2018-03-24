@@ -1,0 +1,11 @@
+<module rename-to='reversi'>
+  <inherits name='playn.Scene'/>
+  <inherits name='ReversiAssets'/>
+
+  <source path='core'/>
+  <source path='html'/>
+
+  <public path="resources" />
+
+  <entry-point class='org.jeffreypratt.html.ReversiHtml'/>
+</module>
