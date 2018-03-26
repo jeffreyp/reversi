@@ -8,3 +8,4 @@ You are quivering with excitement, I can tell.
 
 * Add a score board and keep a running tally for each player.
 * Add a "whooshing" sound for the pieces leaving the board.
+* Alternate/select starting player rather than just black
