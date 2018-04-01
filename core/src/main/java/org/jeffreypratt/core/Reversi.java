@@ -13,6 +13,7 @@ import react.Value;
 import tripleplay.anim.Animator;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Reversi extends SceneGame {
@@ -78,10 +79,7 @@ public class Reversi extends SceneGame {
             }
         });
 
-        // create and add a board view
-        //rootLayer.addCenterAt(new BoardView(this, size), size.width()/2, size.height()/2);
         // create and add a game view
-        //rootLayer.add(new GameView(this, size));
         final GameView gview = new GameView(this, size);
         rootLayer.add(gview);
 
@@ -93,10 +91,14 @@ public class Reversi extends SceneGame {
                 if (!plays.isEmpty()) {
                     lastPlayerPassed = false;
                     gview.showPlays(plays, color);
+                    System.err.println("JCP: a turn is occuring for player " + color +".");
+                    System.err.println("JCP: " + getCount());
                 } else if (lastPlayerPassed) {
+                    System.err.println("JCP: " + color + " passed, ending the game.");
                     endGame();
                 } else {
                     lastPlayerPassed = true;
+                    System.err.println("JCP: " + color + " passed, going to next player.");
                     turn.update(color.next());
                 }
             }
@@ -104,6 +106,27 @@ public class Reversi extends SceneGame {
 
         // start the game
         reset();
+    }
+
+    private String getCount () {
+        String retval = "";
+
+        Piece[] ps = Piece.values();
+        int[] count = new int[ps.length];
+        int b = 0;
+        int w = 0;
+        for (Piece p : pieces.values()) {
+            count[p.ordinal()]++;
+            if (p == Piece.BLACK) {
+                b++;
+            } else {
+                w++;
+            }
+
+            retval = "BLACK: " + b + ", " + "WHITE: " + w +".";
+        }
+
+        return retval;
     }
 
     private void endGame () {
