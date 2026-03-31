@@ -87,6 +87,8 @@
                     </condition>
                     <java fork="true" classname="${mainClass}" classpathref="maven.test.classpath">
                       <jvmarg value="${jvmarg}"/>
+                      <jvmarg value="--add-opens=java.base/java.nio=ALL-UNNAMED"/>
+                      <jvmarg value="--add-opens=java.base/sun.nio.ch=ALL-UNNAMED"/>
                     </java>
                   </target>
                 </configuration>
